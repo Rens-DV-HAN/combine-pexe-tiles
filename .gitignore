@@ -1,4 +1,7 @@
-.vscode
 __pycache__
+
+.vscode
+
 /messages
 /tiles
+/result.png
