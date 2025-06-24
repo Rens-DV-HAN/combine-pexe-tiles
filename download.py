@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from time import sleep
 from typing import TypedDict
 
 import requests
@@ -51,6 +52,8 @@ def download_tile_from_message(message: Message):
             f"tiles/{attachment["id"]}{attachment_file_extension}", "wb"
         ) as attachment_file:
             attachment_file.write(attachment_response.content)
+
+        sleep(1)  # Prevent too many requests
 
 
 def download_tiles_from_messages():
