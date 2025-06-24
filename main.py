@@ -1,4 +1,4 @@
-from statistics import mean
+from statistics import mean, median
 from typing import Iterable
 
 from PIL import Image, ImageOps
@@ -8,13 +8,13 @@ from test_data.test_data import test_tiles
 from type_aliases import FileOrFilePath
 
 
-def get_average_tile_size(tiles: Iterable[FileOrFilePath]):
+def get_median_tile_size(tiles: Iterable[FileOrFilePath]):
     average_tile_sizes: list[int | float] = []
     for tile in tiles:
         with Image.open(tile) as tile_image:
             average_tile_sizes.append(mean(tile_image.size))
 
-    return round(mean(average_tile_sizes))
+    return round(median(average_tile_sizes))
 
 
 def get_offset_to_center(outer_size: int, inner_size: int):
@@ -54,7 +54,7 @@ def main():
     # download_tiles_from_messages()
     tiles = test_tiles
 
-    cell_size = get_average_tile_size(tiles)
+    cell_size = get_median_tile_size(tiles)
     GRID_SIZE = 9
     image_size = (cell_size * GRID_SIZE, cell_size * GRID_SIZE)
 
