@@ -55,16 +55,16 @@ def main():
     tiles = test_tiles
 
     cell_size = get_average_tile_size(tiles)
-    grid_size = 9
-    image_size = (cell_size * grid_size, cell_size * grid_size)
+    GRID_SIZE = 9
+    image_size = (cell_size * GRID_SIZE, cell_size * GRID_SIZE)
 
     WHITE = (255, 255, 255)
     image = Image.new("RGB", image_size, WHITE)
 
     dimension_indexes = (
         (row, column)
-        for row in range(grid_size)
-        for column in range(grid_size)
+        for row in range(GRID_SIZE)
+        for column in range(GRID_SIZE)
         if not (3 <= row <= 5 and 3 <= column <= 5)  # center 3x3 empty
     )
     for cell, tile in zip(dimension_indexes, tiles, strict=True):
