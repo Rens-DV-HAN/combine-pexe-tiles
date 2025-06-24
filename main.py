@@ -1,4 +1,3 @@
-from itertools import product
 from statistics import mean
 from typing import Iterable
 
@@ -58,8 +57,13 @@ def main():
     WHITE = (255, 255, 255)
     image = Image.new("RGB", image_size, WHITE)
 
-    # TODO strict to True?
-    for cell, tile in zip(product(range(grid_size), range(grid_size)), tiles):
+    dimension_indexes = (
+        (row, column)
+        for row in range(grid_size)
+        for column in range(grid_size)
+        if not (3 <= row <= 5 and 3 <= column <= 5)  # center 3x3 empty
+    )
+    for cell, tile in zip(dimension_indexes, tiles, strict=True):
         with Image.open(tile) as tile_image:
             paste_tile_image_on_image(image, tile_image, cell, cell_size)
 
