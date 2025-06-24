@@ -9,7 +9,11 @@ from type_aliases import FileOrFilePath
 
 
 def get_average_tile_size(tiles: Iterable[FileOrFilePath]):
-    average_tile_sizes = (mean(Image.open(tile).size) for tile in tiles)
+    average_tile_sizes: list[int | float] = []
+    for tile in tiles:
+        with Image.open(tile) as tile_image:
+            average_tile_sizes.append(mean(tile_image.size))
+
     return round(mean(average_tile_sizes))
 
 
