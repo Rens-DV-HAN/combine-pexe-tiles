@@ -3,7 +3,6 @@ from typing import Iterable
 
 from PIL import Image, ImageOps
 
-from download import download_tiles_from_messages
 from test_data.test_data import test_tiles
 from type_aliases import FileOrFilePath
 
@@ -51,7 +50,6 @@ def paste_tile_image_on_image(
 
 
 def main():
-    # download_tiles_from_messages()
     tiles = test_tiles
 
     cell_size = get_median_tile_size(tiles)

@@ -59,3 +59,11 @@ def download_tiles_from_messages():
         messages = json.loads(messages_file_text)
         for message in messages:
             download_tile_from_message(message)
+
+
+def main():
+    download_tiles_from_messages()
+
+
+if __name__ == "__main__":
+    main()
