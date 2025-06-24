@@ -50,7 +50,7 @@ def paste_tile_image_on_image(
 
 
 def main():
-    tiles = list(Path("tiles").iterdir())
+    tiles = [file for file in Path("tiles").iterdir() if file.is_file()]
 
     cell_size = get_median_tile_size(tiles)
     GRID_SIZE = 9
