@@ -1,9 +1,9 @@
+from pathlib import Path
 from statistics import mean, median
 from typing import Iterable
 
 from PIL import Image, ImageOps
 
-from test_data.test_data import test_tiles
 from type_aliases import FileOrFilePath
 
 
@@ -50,7 +50,7 @@ def paste_tile_image_on_image(
 
 
 def main():
-    tiles = test_tiles
+    tiles = list(Path("tiles").iterdir())
 
     cell_size = get_median_tile_size(tiles)
     GRID_SIZE = 9
